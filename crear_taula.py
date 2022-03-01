@@ -1,5 +1,8 @@
 import psycopg2
-
+import client
+import llibreta
+import menu
+import aplicacio
 # def create_table():
 #     """ create tables in the PostgreSQL database"""
 #     commands = (
@@ -61,42 +64,42 @@ import psycopg2
 
 #!/usr/bin/python
 
-import psycopg2
+
 from config import config
 
-
-def insert_vendor(vendor_name):
-    """ insert a new vendor into the vendors table """
-    sql = """INSERT INTO vendors(vendor_name)
-             VALUES(%s) RETURNING vendor_id;"""
-    conn = None
-    vendor_id = None
-    try:
-        # read database configuration
-        params = config()
-        # connect to the PostgreSQL database
-        conn = psycopg2.connect(**params)
-        # create a new cursor
-        cur = conn.cursor()
-        # execute the INSERT statement
-        cur.execute(sql, (vendor_name,))
-        # get the generated id back
-        vendor_id = cur.fetchone()[0]
-        # commit the changes to the database
-        conn.commit()
-        # close communication with the database
-        cur.close()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-    finally:
-        if conn is not None:
-            conn.close()
-
-    return vendor_id
-
-def insert_cliente(id, nom, cognom, telefon, correu, adreca, ciudad):
-    """ insert a new vendor into the vendors table """
-    cur.execute("INSERT INTO cliente(cliente_id,cliente_name,cliente_cognom,cliente_telefon,cliente_correu,cliente_adreca,cliente_ciutat) VALUES(%s,%s,%s,%s,%s,%s,%s);")
+#
+# def insert_vendor(vendor_name):
+#     """ insert a new vendor into the vendors table """
+#     sql = """INSERT INTO vendors(vendor_name)
+#              VALUES(%s) RETURNING vendor_id;"""
+#     conn = None
+#     vendor_id = None
+#     try:
+#         # read database configuration
+#         params = config()
+#         # connect to the PostgreSQL database
+#         conn = psycopg2.connect(**params)
+#         # create a new cursor
+#         cur = conn.cursor()
+#         # execute the INSERT statement
+#         cur.execute(sql, (vendor_name,))
+#         # get the generated id back
+#         vendor_id = cur.fetchone()[0]
+#         # commit the changes to the database
+#         conn.commit()
+#         # close communication with the database
+#         cur.close()
+#     except (Exception, psycopg2.DatabaseError) as error:
+#         print(error)
+#     finally:
+#         if conn is not None:
+#             conn.close()
+#
+#     return vendor_id
+#
+# def insert_cliente(id, nom, cognom, telefon, correu, adreca, ciudad):
+#     """ insert a new vendor into the vendors table """
+#     cur.execute("INSERT INTO cliente(cliente_id,cliente_name,cliente_cognom,cliente_telefon,cliente_correu,cliente_adreca,cliente_ciutat) VALUES(%s,%s,%s,%s,%s,%s,%s);")
 
 try:
     conn = psycopg2.connect("dbname='Bddemo' user='odoo' host='172.17.0.1'password='odoo'")
@@ -105,7 +108,12 @@ try:
     cur.execute("DROP TABLE IF EXISTS cliente")
     command = ("CREATE TABLE cliente (cliente_id VARCHAR(199), cliente_name VARCHAR(255), cliente_cognom VARCHAR(255), cliente_telefon VARCHAR(255), cliente_correu VARCHAR(255), cliente_adreca VARCHAR(255), cliente_ciutat VARCHAR(255))")
     cur.execute(command)
-    cur.execute(sql, insert_cliente(cliente_id,cliente_name,cliente_cognom,cliente_telefon,cliente_correu,cliente_adreca,cliente_ciutat))
+    aplicacio.mostrar
+    llibreta.afegir_client()
+    #
+    # sql = """INSERT INTO cliente(cliente_id,cliente_name,cliente_cognom,cliente_telefon,cliente_correu,cliente_adreca,cliente_ciutat) VALUES(%s,%s,%s,%s,%s,%s,%s);"""
+    # cur.execute(sql, (cliente_id,cliente_name,cliente_cognom,cliente_telefon,cliente_correu,cliente_adreca,cliente_ciutat))
+
     #modificar
 
 
